@@ -7,6 +7,10 @@ export class TaskView {
 		private tasks: ImmutableMap<string, Task>,
 	) {}
 
+	static empty(repository: TaskRepository): TaskView {
+		return new TaskView(repository, ImmutableMap());
+	}
+
 	static async fromSearch(
 		repository: TaskRepository,
 		filters?: Partial<Task>
