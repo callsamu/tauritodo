@@ -27,26 +27,31 @@ export function TaskForm({ onSubmit }: TaskFormProps) {
 		},
 	});
 
+	function _onSubmit(values: TaskSchema) {
+		onSubmit(values);
+		form.reset();
+	}
+
 	return (
 		<Form {... form}>
-			<form onSubmit={form.handleSubmit(onSubmit)}>
+			<form 
+				className="w-full m-3 flex items-end gap-2"
+				onSubmit={form.handleSubmit(_onSubmit)}
+			>
 				<FormField
 					control={form.control}
 					name="title"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Title</FormLabel>
+							<FormLabel>Task Title</FormLabel>
 							<FormControl>
-								<Input placeholder="Title" {...field} />
+								<Input placeholder="Walk the Dog" {...field} />
 							</FormControl>
-							<FormDescription>
-							 Hello
-							</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
 				/>
-				<Button type="submit">Submit</Button>
+				<Button variant="outline" type="submit">Submit</Button>
 			</form>
 		</Form>
 	);

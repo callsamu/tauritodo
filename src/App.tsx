@@ -27,7 +27,7 @@ function App() {
 
 	return (
 		<ThemeProvider defaultTheme="dark">
-			<main>
+			<main className="mx-auto py-6 md:w-1/2 sm:w-full">
 				<h1 className="font-bold text-2xl">Tauri Todo</h1>
 				<TaskForm onSubmit={task => tasks.add(task.title).then(setTasks)} />
 				<ul>
