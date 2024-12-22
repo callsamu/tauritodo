@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "./ui/button";
@@ -35,14 +35,14 @@ export function TaskForm({ onSubmit }: TaskFormProps) {
 	return (
 		<Form {... form}>
 			<form 
-				className="w-full m-3 flex items-end gap-2"
+				className="w-full flex items-end gap-4 text-3xl"
 				onSubmit={form.handleSubmit(_onSubmit)}
 			>
 				<FormField
 					control={form.control}
 					name="title"
 					render={({ field }) => (
-						<FormItem>
+						<FormItem className="text-3xl flex-grow">
 							<FormLabel>Task Title</FormLabel>
 							<FormControl>
 								<Input placeholder="Walk the Dog" {...field} />

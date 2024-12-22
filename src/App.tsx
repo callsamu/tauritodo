@@ -27,8 +27,8 @@ function App() {
 		child.push(
 			<li 
 			className="
-				border border-border p-2 rounded-xl
-				pl-8 flex justify-between
+				border-2 shadow border-border p-2 rounded-xl
+				pl-8 flex justify-between 
 			"
 			key={task.id}>
 				<div className="flex items-center gap-2">
@@ -45,10 +45,10 @@ function App() {
 
 	return (
 		<ThemeProvider defaultTheme="dark">
-			<main className="mx-auto py-6 md:w-1/2 sm:w-full">
+			<main className="mx-auto mt-10 py-6 md:w-1/3 sm:w-full">
 				<h1 className="font-bold text-2xl my-4">Tauri Todo</h1>
 				<TaskForm onSubmit={task => tasks.add(task.title).then(setTasks)} />
-				<ul className="flex flex-col gap-3 text-lg mt-10">
+				<ul className="flex flex-col gap-5 text-lg mt-10 mx-auto">
 					{child}
 				</ul>
 			</main>
