@@ -4,6 +4,18 @@ export class InMemoryTaskRepository implements TaskRepository {
 	private static counter = 0;
 	private store = new Map<string, Task>();
 
+	static initialize(titles: string[]) {
+		this.counter = 0;
+
+		const repository = new InMemoryTaskRepository();
+
+		for (const title of titles) {
+			repository.create(title);
+		}
+
+		return repository;
+	}
+
 	async search(filters: Partial<Task>): Promise<Task[]> {
 		const tasks: Task[] = [];
 
