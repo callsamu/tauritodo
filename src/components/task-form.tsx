@@ -4,6 +4,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "./ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "./ui/button";
+import { Task } from "@/lib/types";
 
 const formSchema = z.object({
 	title: z.string().nonempty({
@@ -16,14 +17,15 @@ const formSchema = z.object({
 export type TaskSchema = z.infer<typeof formSchema>;
 
 interface TaskFormProps {
+	defaults?: Task;
 	onSubmit: (values: TaskSchema) => void;
 }
 
-export function TaskForm({ onSubmit }: TaskFormProps) {
+export function TaskForm({ defaults, onSubmit }: TaskFormProps) {
 	const form = useForm<TaskSchema>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			title: "",
+			title: defaults?.title ?? '',
 		},
 	});
 
