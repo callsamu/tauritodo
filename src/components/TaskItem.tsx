@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "./ui/dialog"
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { TaskForm } from "./task-form";
 import { useState } from "react";
+import { Edit, Trash } from "lucide-react";
 
 type TaskHandler = (task: Task) => void;
 
@@ -30,14 +31,16 @@ export default function TaskItem({
 				pl-8 flex justify-between 
 			"
 		>
-			<div className="flex items-center gap-2">
+			<div className="flex items-center gap-4">
 				<Checkbox onCheckedChange={onDone} checked={task.done} />
 			<span>{task.title}</span>
 			</div>
-			<div className="float-right">
+			<div className="float-right flex gap-3 mx-3">
 				<Dialog open={open} onOpenChange={setOpen}>
 					<DialogTrigger asChild>
-						<Button variant="link" size="sm"> Edit </Button>
+						<Button variant="secondary" size="sm"> 
+							<Edit />
+						</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
@@ -49,7 +52,9 @@ export default function TaskItem({
 						}} />
 					</DialogContent>
 				</Dialog>
-				<Button variant="link" size="sm" onClick={() => onDelete(task)}>Delete</Button>
+				<Button variant="destructive" size="sm" onClick={() => onDelete(task)}>
+					<Trash />
+				</Button>
 			</div>
 		</div>
 	);
