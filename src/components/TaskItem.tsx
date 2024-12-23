@@ -10,7 +10,7 @@ type TaskHandler = (task: Task) => void;
 
 interface TaskItemProps {
 	task: Task,
-	onDone: TaskHandler;
+	onDone: () => {};
 	onEdit: TaskHandler;
 	onDelete: TaskHandler;
 }
@@ -31,7 +31,7 @@ export default function TaskItem({
 			"
 		>
 			<div className="flex items-center gap-2">
-				<Checkbox className="" />
+				<Checkbox onCheckedChange={onDone} checked={task.done} />
 			<span>{task.title}</span>
 			</div>
 			<div className="float-right">

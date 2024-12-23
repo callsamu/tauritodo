@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { ThemeProvider } from "./components/theme-provider";
-import { Task } from "./lib/types";
 import { InMemoryTaskRepository } from "./lib/InMemoryTaskRepository";
 import { TaskView } from "./lib/TaskView";
 import { TaskForm } from "./components/task-form";
-import { Button } from "./components/ui/button";
-import { Checkbox } from "./components/ui/checkbox.tsx";
+import TaskItem from "./components/TaskItem.tsx";
 
 
 function App() {
@@ -25,20 +23,13 @@ function App() {
 
 	for (const task of tasks.iter()) {
 		child.push(
-			<li 
-			className="
-				border-2 shadow border-border p-2 rounded-xl
-				pl-8 flex justify-between 
-			"
-			key={task.id}>
-				<div className="flex items-center gap-2">
-					<Checkbox className="" disabled={false} />
-				<span>{task.title}</span>
-				</div>
-				<div className="float-right">
-					<Button variant="link" size="sm" onClick={() => tasks.edit(task).then(setTasks)}>Edit</Button>
-					<Button variant="link" size="sm" onClick={() => tasks.delete(task.id).then(setTasks)}>Delete</Button>
-				</div>
+			<li key={task.id}>
+				<TaskItem 
+					task={task}
+					onDone={() => tasks.edit({ ...task, done: true }).then(setTasks)}
+					onEdit={task => tasks.edit(task).then(setTasks)}
+					onDelete={task => tasks.delete(task.id).then(setTasks)}
+				/>
 			</li>
 		);
 	}
