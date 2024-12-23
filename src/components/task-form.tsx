@@ -53,7 +53,7 @@ export function TaskForm({ defaults, onSubmit }: TaskFormProps) {
 						</FormItem>
 					)}
 				/>
-				<Button variant="outline" type="submit">Submit</Button>
+				<Button variant="default" type="submit">Submit</Button>
 			</form>
 		</Form>
 	);
