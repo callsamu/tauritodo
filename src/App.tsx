@@ -30,7 +30,7 @@ function App() {
 		console.log(tab);
 		tasks.search({ done: tab === States.DONE }).then(setTasks);
 		return () => {};
-	}, [tab, tasks])
+	}, [tab])
 
 
 	const child = [];
@@ -40,7 +40,11 @@ function App() {
 			<li key={task.id}>
 				<TaskItem 
 					task={task}
-					onDone={() => tasks.edit({ ...task, done: true }).then(setTasks)}
+					onDone={
+						() => tasks.edit({ ...task, done: true }).
+							then(tasks => tasks.search({ done: tab === States.DONE })).
+							then(setTasks)
+					}
 					onEdit={task => tasks.edit(task).then(setTasks)}
 					onDelete={task => tasks.delete(task.id).then(setTasks)}
 				/>
